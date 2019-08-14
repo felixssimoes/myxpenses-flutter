@@ -32,7 +32,12 @@ class AccountsListScreen extends StatelessWidget {
                     final account = value.accounts[index];
                     return AccountsListItem(
                       accountId: account.id,
-                      onSelectAccount: () {},
+                      onSelectAccount: () {
+                        Navigator.of(context).pushNamed(
+                          '/account',
+                          arguments: account,
+                        );
+                      },
                       onDeleteAccount: () {
                         value.deleteAccount(account);
                       },
