@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'myXpenses',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.teal,
+          accentColor: Colors.tealAccent,
         ),
         routes: {
           '/': (_) => AccountsListScreen(),

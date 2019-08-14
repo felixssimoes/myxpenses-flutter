@@ -17,16 +17,19 @@ class DateIntervalSelector extends StatelessWidget {
             Row(
               children: <Widget>[
                 _buildButton(
+                  context,
                   dateInterval.type == IntevalType.Day,
                   'Day',
                   () => dateInterval.setType(IntevalType.Day),
                 ),
                 _buildButton(
+                  context,
                   dateInterval.type == IntevalType.Week,
                   'Week',
                   () => dateInterval.setType(IntevalType.Week),
                 ),
                 _buildButton(
+                  context,
                   dateInterval.type == IntevalType.Month,
                   'Month',
                   () => dateInterval.setType(IntevalType.Month),
@@ -59,12 +62,24 @@ class DateIntervalSelector extends StatelessWidget {
     );
   }
 
-  Widget _buildButton(bool active, String title, Function onPressed) {
+  Widget _buildButton(
+    BuildContext context,
+    bool active,
+    String title,
+    Function onPressed,
+  ) {
+    final theme = Theme.of(context);
     return Expanded(
       child: Container(
-        color: active ? Colors.green : Colors.grey,
+        color: active ? theme.accentColor : theme.disabledColor,
         child: FlatButton(
-          child: Text(title),
+          child: Text(
+            title,
+            style: TextStyle(
+              fontSize: 18,
+              color: active ? Colors.black : theme.buttonColor,
+            ),
+          ),
           onPressed: onPressed,
         ),
       ),
