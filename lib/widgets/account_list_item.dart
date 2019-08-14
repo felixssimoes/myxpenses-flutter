@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:myxpenses/models/account.model.dart';
@@ -23,8 +24,15 @@ class AccountsListItem extends StatelessWidget {
       builder: (BuildContext context, Account account, List expenses) {
         return ListTile(
           title: Text(account.name),
-          trailing: Text(NumberFormat.currency(name: 'EUR')
-              .format(getTotalFromExpenses(expenses))),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(NumberFormat.currency(name: 'EUR ')
+                  .format(getTotalFromExpenses(expenses))),
+              SizedBox(width: 5),
+              Icon(Icons.chevron_right),
+            ],
+          ),
           onTap: onSelectAccount,
         );
       },
