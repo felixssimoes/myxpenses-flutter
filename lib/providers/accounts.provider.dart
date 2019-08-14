@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:myxpenses/data/models/account.model.dart';
+import 'package:myxpenses/models/account.model.dart';
 
 class AccountsProvider with ChangeNotifier {
   List<Account> _accounts = [];

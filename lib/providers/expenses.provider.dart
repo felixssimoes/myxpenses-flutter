@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'package:myxpenses/data/models/account.model.dart';
-import 'package:myxpenses/data/models/expense.model.dart';
+import 'package:myxpenses/models/account.model.dart';
+import 'package:myxpenses/models/expense.model.dart';
 
 class ExpensesProvider with ChangeNotifier {
   List<Expense> _expenses = [];

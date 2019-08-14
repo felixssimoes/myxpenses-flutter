@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:myxpenses/data/providers/date_interval.provider.dart';
+import 'package:myxpenses/providers/date_interval.provider.dart';
 import 'package:provider/provider.dart';
 
 class DateIntervalSelector extends StatelessWidget {

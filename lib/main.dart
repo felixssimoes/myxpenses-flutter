@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myxpenses/data/providers/accounts.provider.dart';
-import 'package:myxpenses/data/providers/date_interval.provider.dart';
-import 'package:myxpenses/data/providers/expenses.provider.dart';
-import 'package:myxpenses/ui/screens/account_details.screen.dart';
-import 'package:myxpenses/ui/screens/accounts_list.screen.dart';
+import 'package:myxpenses/providers/accounts.provider.dart';
+import 'package:myxpenses/providers/date_interval.provider.dart';
+import 'package:myxpenses/providers/expenses.provider.dart';
+import 'package:myxpenses/screens/account_details.screen.dart';
+import 'package:myxpenses/screens/accounts_list.screen.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());

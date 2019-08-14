@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myxpenses/data/providers/accounts.provider.dart';
-import 'package:myxpenses/ui/widgets/account_list_item.dart';
-import 'package:myxpenses/ui/widgets/date_interval_selector.dart';
+import 'package:myxpenses/providers/accounts.provider.dart';
+import 'package:myxpenses/widgets/account_list_item.dart';
+import 'package:myxpenses/widgets/date_interval_selector.dart';
 import 'package:provider/provider.dart';
 
 class AccountsListScreen extends StatelessWidget {
