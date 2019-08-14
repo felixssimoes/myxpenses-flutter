@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myxpenses/data/providers/accounts.provider.dart';
 import 'package:myxpenses/data/providers/date_interval.provider.dart';
+import 'package:myxpenses/data/providers/expenses.provider.dart';
 import 'package:myxpenses/ui/screens/accounts_list.screen.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(builder: (_) => DateIntervalProvider()),
         ChangeNotifierProvider(builder: (_) => AccountsProvider()),
+        ChangeNotifierProvider(builder: (_) => ExpensesProvider()),
       ],
       child: MaterialApp(
         title: 'myXpenses',
