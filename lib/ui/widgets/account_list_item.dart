@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myxpenses/data/providers/accounts.provider.dart';
-import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
+import 'package:myxpenses/data/models/account.model.dart';
+import 'package:myxpenses/data/models/expense.model.dart';
+import 'package:myxpenses/ui/widgets/account_builder.dart';
 
 class AccountsListItem extends StatelessWidget {
   final Function onSelectAccount;
@@ -16,11 +18,16 @@ class AccountsListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final account = Provider.of<AccountsProvider>(context, listen: false)
-        .findById(accountId);
-    return ListTile(
-      title: Text(account.name),
-      onTap: onSelectAccount,
+    return AccountBuilder(
+      accountId: accountId,
+      builder: (BuildContext context, Account account, List expenses) {
+        return ListTile(
+          title: Text(account.name),
+          trailing: Text(NumberFormat.currency(name: 'EUR')
+              .format(getTotalFromExpenses(expenses))),
+          onTap: onSelectAccount,
+        );
+      },
     );
   }
 }
