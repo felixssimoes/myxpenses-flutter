@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:myxpenses/providers/accounts.provider.dart';
 import 'package:myxpenses/providers/date_interval.provider.dart';
 import 'package:myxpenses/providers/expenses.provider.dart';
-import 'package:myxpenses/screens/account_details.screen.dart';
-import 'package:myxpenses/screens/accounts_list.screen.dart';
+import 'package:myxpenses/screens/accounts/account_details.screen.dart';
+import 'package:myxpenses/screens/accounts/accounts_list.screen.dart';
+import 'package:myxpenses/screens/accounts/create_account.screen.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           '/': (_) => AccountsListScreen(),
-          '/account': (_) => AccountDetailsScreen(),
+          'account-details': (_) => AccountDetailsScreen(),
+          'create-account': (_) => CreateAccountScreen(),
         },
       ),
     );

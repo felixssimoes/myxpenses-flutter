@@ -8,4 +8,9 @@ class Account {
     @required this.id,
     @required this.name,
   });
+
+  Account copyWith({String name}) => Account(
+        id: this.id,
+        name: name ?? this.name,
+      );
 }
