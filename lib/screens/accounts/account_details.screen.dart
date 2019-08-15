@@ -10,8 +10,6 @@ import 'package:myxpenses/widgets/expenses/expense_list_item.dart';
 import 'package:provider/provider.dart';
 
 class AccountDetailsScreen extends StatelessWidget {
-  static const routeName = '/product-detail';
-
   @override
   Widget build(BuildContext context) {
     final accountId = (ModalRoute.of(context).settings.arguments as Account).id;
@@ -19,7 +17,18 @@ class AccountDetailsScreen extends StatelessWidget {
       accountId: accountId,
       builder: (BuildContext context, Account account, List expenses) {
         return Scaffold(
-          appBar: AppBar(title: Text(account.name)),
+          appBar: AppBar(
+            title: Text(account.name),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.settings),
+                onPressed: () => Navigator.of(context).pushNamed(
+                  'edit-account',
+                  arguments: account,
+                ),
+              )
+            ],
+          ),
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add_alarm),
             onPressed: () {

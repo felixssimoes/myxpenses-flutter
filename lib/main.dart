@@ -5,6 +5,7 @@ import 'package:myxpenses/providers/expenses.provider.dart';
 import 'package:myxpenses/screens/accounts/account_details.screen.dart';
 import 'package:myxpenses/screens/accounts/accounts_list.screen.dart';
 import 'package:myxpenses/screens/accounts/create_account.screen.dart';
+import 'package:myxpenses/screens/accounts/edit_account.screen.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           '/': (_) => AccountsListScreen(),
           'account-details': (_) => AccountDetailsScreen(),
           'create-account': (_) => CreateAccountScreen(),
+          'edit-account': (_) => EditAccountScreen(),
         },
       ),
     );
