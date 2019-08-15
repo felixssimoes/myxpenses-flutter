@@ -31,9 +31,12 @@ class _AccountFormState extends State<AccountForm> {
     return Form(
       key: _formKey,
       child: Card(
-        child: Container(
-          padding: EdgeInsets.all(20),
-          child: ListView(
+        margin: const EdgeInsets.all(10),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               _buildNameField(context),
               SizedBox(height: 30),

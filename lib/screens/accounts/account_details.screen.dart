@@ -16,6 +16,10 @@ class AccountDetailsScreen extends StatelessWidget {
     return AccountBuilder(
       accountId: accountId,
       builder: (BuildContext context, Account account, List expenses) {
+        if (account == null) {
+          Navigator.of(context).pop();
+          return Scaffold();
+        }
         return Scaffold(
           appBar: AppBar(
             title: Text(account.name),
@@ -46,13 +50,6 @@ class AccountDetailsScreen extends StatelessWidget {
                   Text(NumberFormat.currency(name: 'EUR')
                       .format(getTotalFromExpenses(expenses))),
                 ],
-              ),
-              FlatButton(
-                child: Text('Update'),
-                onPressed: () {
-                  final ua = Account(id: accountId, name: 'Name updated');
-                  Provider.of<AccountsProvider>(context).updateAccount(ua);
-                },
               ),
               Expanded(
                 child: ListView.builder(

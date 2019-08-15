@@ -27,5 +27,7 @@ class AccountsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Account findById(String id) => _accounts.firstWhere((a) => a.id == id);
+  Account findById(String id) {
+    return _accounts.firstWhere((a) => a.id == id, orElse: () => null);
+  }
 }

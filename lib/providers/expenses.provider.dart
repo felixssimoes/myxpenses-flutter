@@ -8,7 +8,7 @@ class ExpensesProvider with ChangeNotifier {
   List<Expense> _expenses = [];
 
   Expense findById(String id) {
-    return _expenses.firstWhere((e) => e.id == id);
+    return _expenses.firstWhere((e) => e.id == id, orElse: () => null);
   }
 
   List<Expense> expensesForAccount(Account account) {
@@ -24,6 +24,16 @@ class ExpensesProvider with ChangeNotifier {
     );
     _expenses.add(expense);
     _sortExpenses();
+    notifyListeners();
+  }
+
+  void deleteExpense(Expense expense) {
+    _expenses.removeWhere((e) => e.id == expense.id);
+    notifyListeners();
+  }
+
+  void deleteAllExpensesForAccount(Account account) {
+    _expenses.removeWhere((e) => e.accountId == account.id);
     notifyListeners();
   }
 
