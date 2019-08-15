@@ -50,18 +50,22 @@ class _AccountFormState extends State<AccountForm> {
 
   Widget _buildNameField(BuildContext context) {
     return TextFormField(
+      autofocus: true,
       controller: _nameController,
       decoration: InputDecoration(labelText: 'Account name'),
       validator: (String value) {
         if (value.isEmpty) {
-          return 'Please, give the account a name.';
+          return widget.account == null
+              ? 'Please, enter the name for the new account'
+              : 'Please enter the new name for this account';
         }
 
         // check if there's another account with the same name
-        final accounts = Provider.of<AccountsProvider>(context).accounts;
+        final accounts =
+            Provider.of<AccountsProvider>(context, listen: false).accounts;
         final index = accounts.indexWhere((a) {
           if (a.name == value) {
-            return widget.account == null || a.id == widget.account.id;
+            return widget.account == null || a.id != widget.account?.id;
           }
           return false;
         });
