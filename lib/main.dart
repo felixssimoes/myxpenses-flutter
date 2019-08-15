@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         title: 'myXpenses',
         theme: ThemeData(
           primarySwatch: Colors.teal,
-          accentColor: Colors.tealAccent,
+          accentColor: Colors.teal[800],
         ),
         routes: {
           '/': (_) => AccountsListScreen(),

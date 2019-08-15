@@ -28,7 +28,7 @@ class EditAccountScreen extends StatelessWidget {
           ),
           RaisedButton(
             child: Text('Delete account'),
-            color: Colors.redAccent,
+            color: Colors.red,
             textColor: Colors.white,
             onPressed: () => _onPressDeleteAccount(context, account),
           ),

@@ -77,7 +77,7 @@ class DateIntervalSelector extends StatelessWidget {
             title,
             style: TextStyle(
               fontSize: 18,
-              color: active ? Colors.black : theme.buttonColor,
+              color: Colors.white,
             ),
           ),
           onPressed: onPressed,
