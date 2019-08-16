@@ -1,11 +1,19 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:myxpenses/models/account.model.dart';
 import 'package:myxpenses/models/expense.model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+const _expensesPreferenceKey = 'com.myxpenses.expenses';
 
 class ExpensesProvider with ChangeNotifier {
   List<Expense> _expenses = [];
+
+  ExpensesProvider() {
+    loadExpenses();
+  }
 
   Expense findById(String id) {
     return _expenses.firstWhere((e) => e.id == id, orElse: () => null);
@@ -21,23 +29,42 @@ class ExpensesProvider with ChangeNotifier {
       accountId: account.id,
       value: Random().nextDouble() * 100,
       date: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+      category: 'expense category',
     );
     _expenses.add(expense);
     _sortExpenses();
+    await _saveExpenses();
     notifyListeners();
   }
 
-  void deleteExpense(Expense expense) {
+  Future<void> deleteExpense(Expense expense) async {
     _expenses.removeWhere((e) => e.id == expense.id);
+    await _saveExpenses();
     notifyListeners();
   }
 
-  void deleteAllExpensesForAccount(Account account) {
+  Future<void> deleteAllExpensesForAccount(Account account) async {
     _expenses.removeWhere((e) => e.accountId == account.id);
+    await _saveExpenses();
     notifyListeners();
   }
 
   void _sortExpenses() {
     _expenses.sort((e1, e2) => e2.date.compareTo(e1.date));
+  }
+
+  Future<void> loadExpenses() async {
+    final preferences = await SharedPreferences.getInstance();
+    final jsonString = preferences.getString(_expensesPreferenceKey);
+    if (jsonString == null) return;
+
+    final jsonValue = json.decode(jsonString) as List<dynamic>;
+    _expenses = jsonValue.map((e) => Expense.fromJson(e)).toList();
+    notifyListeners();
+  }
+
+  Future<void> _saveExpenses() async {
+    final preferences = await SharedPreferences.getInstance();
+    preferences.setString(_expensesPreferenceKey, json.encode(_expenses));
   }
 }

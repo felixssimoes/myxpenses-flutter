@@ -5,13 +5,30 @@ class Expense {
   final String accountId;
   final double value;
   final DateTime date;
+  final String category;
 
   Expense({
     @required this.id,
     @required this.accountId,
     @required this.value,
     @required this.date,
+    @required this.category,
   });
+
+  Expense.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        accountId = json['account_id'],
+        value = json['value'],
+        date = DateTime.parse(json['date']),
+        category = json['category'];
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'account_id': accountId,
+        'value': value,
+        'date': date.toIso8601String(),
+        'category': category,
+      };
 }
 
 double getTotalFromExpenses(List<Expense> expenses) {
