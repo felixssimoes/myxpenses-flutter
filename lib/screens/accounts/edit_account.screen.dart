@@ -16,24 +16,31 @@ class EditAccountScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          AccountForm(
-            account: account,
-            onSaveAccount: ({String name}) {
-              final accounts =
-                  Provider.of<AccountsProvider>(context, listen: false);
-              final updatedAccount = account.copyWith(name: name);
-              accounts.updateAccount(updatedAccount);
-              Navigator.of(context).pop(updatedAccount);
-            },
-          ),
-          RaisedButton(
-            child: Text('Delete account'),
-            color: Colors.red,
-            textColor: Colors.white,
-            onPressed: () => _onPressDeleteAccount(context, account),
-          ),
+          _buildForm(context, account),
+          _buildDeleteButton(context, account),
         ],
       ),
+    );
+  }
+
+  Widget _buildForm(BuildContext context, Account account) {
+    return AccountForm(
+      account: account,
+      onSaveAccount: ({String name}) {
+        final accounts = Provider.of<AccountsProvider>(context, listen: false);
+        final updatedAccount = account.copyWith(name: name);
+        accounts.updateAccount(updatedAccount);
+        Navigator.of(context).pop(updatedAccount);
+      },
+    );
+  }
+
+  Widget _buildDeleteButton(BuildContext context, Account account) {
+    return RaisedButton(
+      child: Text('Delete account'),
+      color: Colors.red,
+      textColor: Colors.white,
+      onPressed: () => _onPressDeleteAccount(context, account),
     );
   }
 

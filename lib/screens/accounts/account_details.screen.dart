@@ -23,45 +23,61 @@ class AccountDetailsScreen extends StatelessWidget {
           appBar: AppBar(
             title: Text(account.name),
             actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () => Navigator.of(context).pushNamed(
-                  'edit-account',
-                  arguments: account,
-                ),
-              )
+              _buildAccountSettingsButton(context, account),
             ],
           ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add_alarm),
-            onPressed: () {
-              Provider.of<ExpensesProvider>(context, listen: false)
-                  .addExpense(account: account);
-            },
-          ),
+          floatingActionButton: _buildAddExpenseButton(context, account),
           body: Column(
             children: <Widget>[
               DateIntervalSelector(),
-              Row(
-                children: <Widget>[
-                  Text('Total expenses'),
-                  SizedBox(width: 20),
-                  Text(NumberFormat.currency(name: 'EUR')
-                      .format(getTotalFromExpenses(expenses))),
-                ],
-              ),
+              _buildTotalBar(expenses),
               Expanded(
-                child: ListView.builder(
-                  itemCount: expenses.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final expense = expenses[index];
-                    return ExpenseListItem(expenseId: expense.id);
-                  },
-                ),
+                child: _buildExpensesList(expenses),
               )
             ],
           ),
         );
+      },
+    );
+  }
+
+  Widget _buildExpensesList(List<Expense> expenses) {
+    return ListView.builder(
+      itemCount: expenses.length,
+      itemBuilder: (BuildContext context, int index) {
+        final expense = expenses[index];
+        return ExpenseListItem(expenseId: expense.id);
+      },
+    );
+  }
+
+  Widget _buildTotalBar(List<Expense> expenses) {
+    return Row(
+      children: <Widget>[
+        Text('Total expenses'),
+        SizedBox(width: 20),
+        Text(NumberFormat.currency(name: 'EUR')
+            .format(getTotalFromExpenses(expenses))),
+      ],
+    );
+  }
+
+  Widget _buildAccountSettingsButton(BuildContext context, Account account) {
+    return IconButton(
+      icon: Icon(Icons.settings),
+      onPressed: () => Navigator.of(context).pushNamed(
+        'edit-account',
+        arguments: account,
+      ),
+    );
+  }
+
+  Widget _buildAddExpenseButton(BuildContext context, Account account) {
+    return FloatingActionButton(
+      child: Icon(Icons.add_alarm),
+      onPressed: () {
+        Provider.of<ExpensesProvider>(context, listen: false)
+            .addExpense(account: account);
       },
     );
   }
