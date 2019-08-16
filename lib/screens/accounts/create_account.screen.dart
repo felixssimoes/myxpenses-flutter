@@ -10,15 +10,19 @@ class CreateAccountScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Create an Account'),
       ),
-      body: AccountForm(
-        onSaveAccount: ({String name}) => _onSaveAccount(context, name),
+      body: Container(
+        padding: const EdgeInsets.all(15),
+        child: AccountForm(
+          onSaveAccount: (AccountFormData data) =>
+              _onSaveAccount(context, data),
+        ),
       ),
     );
   }
 
-  _onSaveAccount(BuildContext context, String name) {
+  _onSaveAccount(BuildContext context, AccountFormData data) {
     final accounts = Provider.of<AccountsProvider>(context);
-    accounts.addAccount(name: name);
+    accounts.addAccount(name: data.name);
     Navigator.of(context).pop(true);
   }
 }

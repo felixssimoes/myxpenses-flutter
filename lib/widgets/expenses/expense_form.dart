@@ -13,11 +13,11 @@ class ExpenseFormData {
 
 class ExpenseForm extends StatefulWidget {
   final Expense expense;
-  final Function(ExpenseFormData) saveExpense;
+  final Function(ExpenseFormData) onSaveExpense;
 
   ExpenseForm({
     this.expense,
-    @required this.saveExpense,
+    @required this.onSaveExpense,
   });
 
   @override
@@ -59,6 +59,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
 
   Widget _buildCategoryField(BuildContext context) {
     return TextFormField(
+      autofocus: true,
       initialValue: _formData.category,
       decoration: InputDecoration(
         labelText: 'Category',
@@ -118,10 +119,12 @@ class _ExpenseFormState extends State<ExpenseForm> {
     final title = widget.expense == null ? 'Create Expense' : 'Update Expense';
     return RaisedButton(
       child: Text(title),
+      color: Theme.of(context).accentColor,
+      textColor: Colors.white,
       onPressed: () {
         if (!_formKey.currentState.validate()) return;
         _formKey.currentState.save();
-        widget.saveExpense(_formData);
+        widget.onSaveExpense(_formData);
       },
     );
   }

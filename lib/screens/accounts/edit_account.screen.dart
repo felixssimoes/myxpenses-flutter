@@ -13,12 +13,15 @@ class EditAccountScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('${account.name} Settings'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          _buildForm(context, account),
-          _buildDeleteButton(context, account),
-        ],
+      body: Container(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            _buildForm(context, account),
+            _buildDeleteButton(context, account),
+          ],
+        ),
       ),
     );
   }
@@ -26,9 +29,9 @@ class EditAccountScreen extends StatelessWidget {
   Widget _buildForm(BuildContext context, Account account) {
     return AccountForm(
       account: account,
-      onSaveAccount: ({String name}) {
+      onSaveAccount: (AccountFormData data) {
         final accounts = Provider.of<AccountsProvider>(context, listen: false);
-        final updatedAccount = account.copyWith(name: name);
+        final updatedAccount = account.copyWith(name: data.name);
         accounts.updateAccount(updatedAccount);
         Navigator.of(context).pop(updatedAccount);
       },

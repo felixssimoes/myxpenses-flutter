@@ -13,7 +13,7 @@ class CreateExpenseScreen extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.all(15.0),
         child: ExpenseForm(
-          saveExpense: (formData) => _saveExpense(context, formData, account),
+          onSaveExpense: (formData) => _saveExpense(context, formData, account),
         ),
       ),
     );

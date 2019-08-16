@@ -3,9 +3,13 @@ import 'package:myxpenses/models/account.model.dart';
 import 'package:myxpenses/providers/accounts.provider.dart';
 import 'package:provider/provider.dart';
 
+class AccountFormData {
+  String name;
+}
+
 class AccountForm extends StatefulWidget {
   final Account account;
-  final Function({String name}) onSaveAccount;
+  final Function(AccountFormData) onSaveAccount;
 
   AccountForm({
     this.account,
@@ -17,33 +21,29 @@ class AccountForm extends StatefulWidget {
 }
 
 class _AccountFormState extends State<AccountForm> {
-  TextEditingController _nameController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _formData = AccountFormData();
 
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: widget.account?.name);
+    if (widget.account != null) {
+      _formData.name = widget.account.name;
+    } else {
+      _formData.name = '';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Card(
-        margin: const EdgeInsets.all(10),
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _buildNameField(context),
-              SizedBox(height: 30),
-              _buildSaveButton(context),
-            ],
-          ),
-        ),
+      child: Column(
+        children: [
+          _buildNameField(context),
+          SizedBox(height: 30),
+          _buildSaveButton(context),
+        ],
       ),
     );
   }
@@ -51,8 +51,12 @@ class _AccountFormState extends State<AccountForm> {
   Widget _buildNameField(BuildContext context) {
     return TextFormField(
       autofocus: true,
-      controller: _nameController,
-      decoration: InputDecoration(labelText: 'Account name'),
+      initialValue: _formData.name,
+      decoration: InputDecoration(
+        labelText: 'Account name',
+        icon: Icon(Icons.account_box),
+      ),
+      onSaved: (value) => _formData.name = value,
       validator: (String value) {
         if (value.isEmpty) {
           return widget.account == null
@@ -94,6 +98,6 @@ class _AccountFormState extends State<AccountForm> {
     }
 
     _formKey.currentState.save();
-    widget.onSaveAccount(name: _nameController.text);
+    widget.onSaveAccount(_formData);
   }
 }

@@ -12,9 +12,20 @@ class EditExpenseScreen extends StatelessWidget {
       appBar: AppBar(title: Text('Edit Expense')),
       body: Container(
         padding: EdgeInsets.all(15.0),
-        child: ExpenseForm(
-          expense: expense,
-          saveExpense: (formData) => _saveExpense(context, formData, expense),
+        child: Column(
+          children: <Widget>[
+            ExpenseForm(
+              expense: expense,
+              onSaveExpense: (formData) =>
+                  _saveExpense(context, formData, expense),
+            ),
+            RaisedButton(
+              child: Text('Delete Expense'),
+              color: Colors.red,
+              textColor: Colors.white,
+              onPressed: () => _deleteExpense(context, expense),
+            )
+          ],
         ),
       ),
     );
@@ -31,6 +42,12 @@ class EditExpenseScreen extends StatelessWidget {
       date: formData.date,
       value: formData.value,
     ));
+    Navigator.of(context).pop();
+  }
+
+  Future<void> _deleteExpense(BuildContext context, Expense expense) async {
+    await Provider.of<ExpensesProvider>(context, listen: false)
+        .deleteExpense(expense);
     Navigator.of(context).pop();
   }
 }
