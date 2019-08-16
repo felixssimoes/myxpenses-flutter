@@ -27,8 +27,15 @@ class AccountsListItem extends StatelessWidget {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text(NumberFormat.currency(name: 'EUR ')
-                  .format(getTotalFromExpenses(expenses))),
+              Text(
+                NumberFormat.currency(name: 'EUR ')
+                    .format(getTotalFromExpenses(expenses)),
+                style: TextStyle(
+                  color: Colors.brown,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               SizedBox(width: 5),
               Icon(Icons.chevron_right),
             ],

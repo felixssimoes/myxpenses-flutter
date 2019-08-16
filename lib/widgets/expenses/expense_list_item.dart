@@ -19,12 +19,20 @@ class ExpenseListItem extends StatelessWidget {
     return ListTile(
       title: Text(expense.category),
       subtitle: Text(DateFormat('dd/MM/yyyy').format(expense.date)),
-      trailing: Text(
-        NumberFormat.currency(name: 'EUR ').format(expense.value),
-        style: TextStyle(
-          color: Colors.brown,
-          fontWeight: FontWeight.bold,
-        ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text(
+            NumberFormat.currency(name: 'EUR ').format(expense.value),
+            style: TextStyle(
+              color: Colors.brown,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(width: 5),
+          Icon(Icons.chevron_right),
+        ],
       ),
       onTap: () => onSelectExpense(),
     );
