@@ -29,6 +29,19 @@ class Expense {
         'date': date.toIso8601String(),
         'category': category,
       };
+
+  Expense copyWith({
+    double value,
+    DateTime date,
+    String category,
+  }) =>
+      Expense(
+        id: this.id,
+        accountId: this.accountId,
+        value: value ?? this.value,
+        date: date ?? this.date,
+        category: category ?? this.category,
+      );
 }
 
 double getTotalFromExpenses(List<Expense> expenses) {

@@ -52,6 +52,14 @@ class ExpensesProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> updateExpense(Expense expense) async {
+    final index = _expenses.indexWhere(((e) => e.id == expense.id));
+    _expenses[index] = expense;
+    _sortExpenses();
+    await _saveExpenses();
+    notifyListeners();
+  }
+
   Future<void> deleteExpense(Expense expense) async {
     _expenses.removeWhere((e) => e.id == expense.id);
     await _saveExpenses();

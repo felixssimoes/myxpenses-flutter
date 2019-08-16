@@ -5,10 +5,12 @@ import 'package:provider/provider.dart';
 
 class ExpenseListItem extends StatelessWidget {
   final String expenseId;
+  final Function onSelectExpense;
 
   const ExpenseListItem({
     Key key,
     @required this.expenseId,
+    this.onSelectExpense,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class ExpenseListItem extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
+      onTap: () => onSelectExpense(),
     );
   }
 }

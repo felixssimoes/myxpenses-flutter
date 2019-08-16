@@ -43,7 +43,12 @@ class AccountDetailsScreen extends StatelessWidget {
       itemCount: expenses.length,
       itemBuilder: (BuildContext context, int index) {
         final expense = expenses[index];
-        return ExpenseListItem(expenseId: expense.id);
+        return ExpenseListItem(
+          expenseId: expense.id,
+          onSelectExpense: () {
+            Navigator.of(context).pushNamed('edit-expense', arguments: expense);
+          },
+        );
       },
     );
   }
