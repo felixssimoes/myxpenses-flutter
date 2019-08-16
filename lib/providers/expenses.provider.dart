@@ -23,13 +23,28 @@ class ExpensesProvider with ChangeNotifier {
     return _expenses.where((e) => e.accountId == account.id).toList();
   }
 
-  Future<void> addExpense({@required Account account}) async {
+  Future<void> addRandomExpense({
+    @required Account account,
+  }) =>
+      addExpense(
+        account: account,
+        value: Random().nextDouble() * 100,
+        date: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
+        category: 'expense category',
+      );
+
+  Future<void> addExpense({
+    @required Account account,
+    @required String category,
+    @required DateTime date,
+    @required double value,
+  }) async {
     final expense = Expense(
       id: DateTime.now().toString(),
       accountId: account.id,
-      value: Random().nextDouble() * 100,
-      date: DateTime.now().subtract(Duration(days: Random().nextInt(30))),
-      category: 'expense category',
+      value: value,
+      date: date,
+      category: category,
     );
     _expenses.add(expense);
     _sortExpenses();

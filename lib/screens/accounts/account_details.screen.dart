@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:myxpenses/models/account.model.dart';
 import 'package:myxpenses/models/expense.model.dart';
-import 'package:myxpenses/providers/expenses.provider.dart';
 import 'package:myxpenses/widgets/accounts/account_builder.dart';
 import 'package:myxpenses/widgets/date_interval_selector.dart';
 import 'package:myxpenses/widgets/expenses/expense_list_item.dart';
-import 'package:provider/provider.dart';
 
 class AccountDetailsScreen extends StatelessWidget {
   @override
@@ -75,8 +73,7 @@ class AccountDetailsScreen extends StatelessWidget {
     return FloatingActionButton(
       child: Icon(Icons.add_alarm),
       onPressed: () {
-        Provider.of<ExpensesProvider>(context, listen: false)
-            .addExpense(account: account);
+        Navigator.of(context).pushNamed('create-expense', arguments: account);
       },
     );
   }

@@ -15,9 +15,15 @@ class ExpenseListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final expense = Provider.of<ExpensesProvider>(context).findById(expenseId);
     return ListTile(
-      title: Text(expense.id),
+      title: Text(expense.category),
       subtitle: Text(DateFormat('dd/MM/yyyy').format(expense.date)),
-      trailing: Text(NumberFormat.currency(name: 'EUR').format(expense.value)),
+      trailing: Text(
+        NumberFormat.currency(name: 'EUR ').format(expense.value),
+        style: TextStyle(
+          color: Colors.brown,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }
