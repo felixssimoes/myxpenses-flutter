@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+const _dateIntervalPreferenceKey = 'com.myxpenses.dateInterval';
 
 enum IntevalType { Day, Week, Month }
 
@@ -12,12 +15,15 @@ class DateIntervalProvider extends ChangeNotifier {
   DateTime get endDate => _endDate;
 
   DateIntervalProvider() {
-    _updateDates();
+    _startDate = DateTime.now();
+    _endDate = DateTime.now();
+    _loadState();
   }
 
   void setType(IntevalType newType) {
     _type = newType;
     _updateDates();
+    _saveState();
     notifyListeners();
   }
 
@@ -76,5 +82,39 @@ class DateIntervalProvider extends ChangeNotifier {
         _endDate = DateTime(now.year, now.month + 1);
         break;
     }
+  }
+
+  Future<void> _loadState() async {
+    final preferences = await SharedPreferences.getInstance();
+    final typeString = preferences.getString(_dateIntervalPreferenceKey);
+    switch (typeString) {
+      case 'day':
+        _type = IntevalType.Day;
+        break;
+      case 'week':
+        _type = IntevalType.Week;
+        break;
+      case 'month':
+        _type = IntevalType.Month;
+        break;
+    }
+    _updateDates();
+    notifyListeners();
+  }
+
+  Future<void> _saveState() async {
+    final preferences = await SharedPreferences.getInstance();
+    var typeString;
+    switch (_type) {
+      case IntevalType.Day:
+        typeString = 'day';
+        break;
+      case IntevalType.Week:
+        typeString = 'week';
+        break;
+      case IntevalType.Month:
+        typeString = 'month';
+    }
+    preferences.setString(_dateIntervalPreferenceKey, typeString);
   }
 }
