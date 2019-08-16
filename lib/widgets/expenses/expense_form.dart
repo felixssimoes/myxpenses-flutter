@@ -27,6 +27,8 @@ class ExpenseForm extends StatefulWidget {
 class _ExpenseFormState extends State<ExpenseForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _formData = ExpenseFormData();
+  final _valueFocus = FocusNode();
+  final _valueController = TextEditingController();
 
   @override
   void initState() {
@@ -34,12 +36,13 @@ class _ExpenseFormState extends State<ExpenseForm> {
     if (widget.expense != null) {
       _formData.category = widget.expense.category;
       _formData.date = widget.expense.date;
-      _formData.value = widget.expense.value;
+      _valueController.text = widget.expense.value.toStringAsFixed(2);
     } else {
       _formData.category = '';
       _formData.date = DateTime.now();
-      _formData.value = 0;
+      _valueController.text = '0.00';
     }
+    _valueFocus.addListener(_valueFocusListener);
   }
 
   @override
@@ -100,7 +103,8 @@ class _ExpenseFormState extends State<ExpenseForm> {
 
   Widget _buildValueField(BuildContext context) {
     return TextFormField(
-      initialValue: _formData.value.toString(),
+      controller: _valueController,
+      focusNode: _valueFocus,
       decoration: InputDecoration(
         labelText: 'Value',
         icon: Icon(Icons.monetization_on),
@@ -109,7 +113,6 @@ class _ExpenseFormState extends State<ExpenseForm> {
         WhitelistingTextInputFormatter(RegExp(r'^(?:[1-9]\d*|0)?(?:\.\d?\d?)?'))
       ],
       keyboardType: TextInputType.number,
-      onSaved: (value) => _formData.value = double.parse(value),
       validator: (value) =>
           (double.tryParse(value) ?? 0) <= 0 ? 'Invalid expense value' : null,
     );
@@ -124,8 +127,18 @@ class _ExpenseFormState extends State<ExpenseForm> {
       onPressed: () {
         if (!_formKey.currentState.validate()) return;
         _formKey.currentState.save();
+        _formData.value = double.tryParse(_valueController.text) ?? 0;
         widget.onSaveExpense(_formData);
       },
     );
+  }
+
+  void _valueFocusListener() {
+    final value = double.tryParse(_valueController.text);
+    if (value != null && value > 0) {
+      _valueController.text = value.toStringAsFixed(2);
+    } else {
+      _valueController.text = _valueFocus.hasFocus ? '' : '0.00';
+    }
   }
 }
