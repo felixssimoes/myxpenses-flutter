@@ -73,10 +73,15 @@ class _ExpenseFormState extends State<ExpenseForm> {
   Widget _buildDateField(BuildContext context) {
     final dateFormat = DateFormat('EEEE, MMMM d, yyyy');
     return DateTimeField(
+      readOnly: true,
       format: dateFormat,
       initialValue: _formData.date,
-      // lastDate: DateTime.now(),
-      validator: (value) => null,
+      validator: (value) {
+        if (value == null) {
+          return 'Expense date is required';
+        }
+        return null;
+      },
       decoration: InputDecoration(
         labelText: 'Date',
         icon: Icon(Icons.calendar_today),
@@ -87,7 +92,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
             context: context,
             firstDate: DateTime(1900),
             initialDate: currentValue ?? DateTime.now(),
-            lastDate: DateTime(2100));
+            lastDate: DateTime.now());
       },
     );
   }
