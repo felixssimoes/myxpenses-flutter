@@ -112,7 +112,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
       inputFormatters: [
         WhitelistingTextInputFormatter(RegExp(r'^(?:[1-9]\d*|0)?(?:\.\d?\d?)?'))
       ],
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.numberWithOptions(decimal: true),
       validator: (value) =>
           (double.tryParse(value) ?? 0) <= 0 ? 'Invalid expense value' : null,
     );
