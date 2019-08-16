@@ -67,12 +67,12 @@ class EditAccountScreen extends StatelessWidget {
         );
       },
     );
-    if (shouldDelete) {
+    if (shouldDelete == true) {
       Provider.of<ExpensesProvider>(context, listen: false)
           .deleteAllExpensesForAccount(account);
       Provider.of<AccountsProvider>(context, listen: false)
           .deleteAccount(account);
+      Navigator.of(context).popUntil(ModalRoute.withName('/'));
     }
-    Navigator.of(context).pop();
   }
 }

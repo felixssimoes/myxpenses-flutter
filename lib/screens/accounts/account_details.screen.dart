@@ -16,7 +16,6 @@ class AccountDetailsScreen extends StatelessWidget {
       accountId: accountId,
       builder: (BuildContext context, Account account, List expenses) {
         if (account == null) {
-          Navigator.of(context).pop();
           return Scaffold();
         }
         return Scaffold(
