@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:myxpenses/models/account.model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 const _accountsPreferenceKey = 'com.myxpenses.accounts';
 
@@ -21,7 +22,7 @@ class AccountsProvider with ChangeNotifier {
 
   Future<Account> addAccount({@required String name}) async {
     final newAccount = Account(
-      id: DateTime.now().toString(),
+      id: Uuid().v1(),
       name: name,
     );
     _accounts.add(newAccount);

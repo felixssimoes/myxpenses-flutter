@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:myxpenses/models/account.model.dart';
 import 'package:myxpenses/models/expense.model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 const _expensesPreferenceKey = 'com.myxpenses.expenses';
 
@@ -40,7 +41,7 @@ class ExpensesProvider with ChangeNotifier {
     @required double value,
   }) async {
     final expense = Expense(
-      id: DateTime.now().toString(),
+      id: Uuid().v1(),
       accountId: account.id,
       value: value,
       date: date,
