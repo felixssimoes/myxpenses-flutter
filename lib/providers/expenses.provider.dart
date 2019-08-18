@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 
 const _expensesPreferenceKey = 'com.myxpenses.expenses';
 
-class ExpensesProvider with ChangeNotifier {
+class ExpensesProvider extends ChangeNotifier {
   List<Expense> _expenses = [];
 
   ExpensesProvider() {

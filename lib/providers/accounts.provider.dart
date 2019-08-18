@@ -7,7 +7,7 @@ import 'package:uuid/uuid.dart';
 
 const _accountsPreferenceKey = 'com.myxpenses.accounts';
 
-class AccountsProvider with ChangeNotifier {
+class AccountsProvider extends ChangeNotifier {
   List<Account> _accounts = [];
 
   List<Account> get accounts => [..._accounts];
