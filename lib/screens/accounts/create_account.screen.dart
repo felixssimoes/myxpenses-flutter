@@ -21,7 +21,7 @@ class CreateAccountScreen extends StatelessWidget {
   }
 
   _onSaveAccount(BuildContext context, AccountFormData data) {
-    final accounts = Provider.of<AccountsProvider>(context);
+    final accounts = Provider.of<AccountsProvider>(context, listen: false);
     accounts.addAccount(name: data.name);
     Navigator.of(context).pop(true);
   }
