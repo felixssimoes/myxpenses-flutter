@@ -29,11 +29,11 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           '/': (_) => AccountsListScreen(),
-          'account-details': (_) => AccountDetailsScreen(),
-          'create-account': (_) => CreateAccountScreen(),
-          'edit-account': (_) => EditAccountScreen(),
-          'create-expense': (_) => CreateExpenseScreen(),
-          'edit-expense': (_) => EditExpenseScreen(),
+          '/account-details': (_) => AccountDetailsScreen(),
+          '/create-account': (_) => CreateAccountScreen(),
+          '/edit-account': (_) => EditAccountScreen(),
+          '/create-expense': (_) => CreateExpenseScreen(),
+          '/edit-expense': (_) => EditExpenseScreen(),
         },
       ),
     );

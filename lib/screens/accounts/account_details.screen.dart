@@ -46,7 +46,8 @@ class AccountDetailsScreen extends StatelessWidget {
         return ExpenseListItem(
           expenseId: expense.id,
           onSelectExpense: () {
-            Navigator.of(context).pushNamed('edit-expense', arguments: expense);
+            Navigator.of(context)
+                .pushNamed('/edit-expense', arguments: expense);
           },
         );
       },
@@ -68,7 +69,7 @@ class AccountDetailsScreen extends StatelessWidget {
     return IconButton(
       icon: Icon(Icons.settings),
       onPressed: () => Navigator.of(context).pushNamed(
-        'edit-account',
+        '/edit-account',
         arguments: account,
       ),
     );
@@ -78,7 +79,7 @@ class AccountDetailsScreen extends StatelessWidget {
     return FloatingActionButton(
       child: Icon(Icons.add_alarm),
       onPressed: () {
-        Navigator.of(context).pushNamed('create-expense', arguments: account);
+        Navigator.of(context).pushNamed('/create-expense', arguments: account);
       },
     );
   }
