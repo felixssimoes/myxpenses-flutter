@@ -45,7 +45,5 @@ class Expense {
 }
 
 double getTotalFromExpenses(List<Expense> expenses) {
-  return expenses.length == 0
-      ? 0
-      : expenses.map((e) => e.value).reduce((a, c) => a + c);
+  return expenses.fold(0, (a, c) => a + c.value);
 }
