@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-
-import 'package:myxpenses/models/expense.model.dart';
+import 'package:myxpenses/data/models/expense.model.dart';
 
 class ExpenseFormData {
   String category;

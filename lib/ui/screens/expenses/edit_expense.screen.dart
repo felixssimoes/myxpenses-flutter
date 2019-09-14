@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myxpenses/models/expense.model.dart';
-import 'package:myxpenses/providers/expenses.provider.dart';
-import 'package:myxpenses/widgets/expenses/expense_form.dart';
+import 'package:myxpenses/data/models/expense.model.dart';
+import 'package:myxpenses/data/providers/expenses.provider.dart';
+import 'package:myxpenses/ui/widgets/expenses/expense_form.dart';
 import 'package:provider/provider.dart';
 
 class EditExpenseScreen extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:myxpenses/providers/expenses.provider.dart';
+import 'package:myxpenses/data/providers/expenses.provider.dart';
 import 'package:provider/provider.dart';
 
 class ExpenseListItem extends StatelessWidget {

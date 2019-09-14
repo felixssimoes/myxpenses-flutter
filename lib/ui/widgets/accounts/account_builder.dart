@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myxpenses/models/account.model.dart';
-import 'package:myxpenses/models/expense.model.dart';
-import 'package:myxpenses/providers/accounts.provider.dart';
-import 'package:myxpenses/providers/date_interval.provider.dart';
-import 'package:myxpenses/providers/expenses.provider.dart';
+import 'package:myxpenses/data/models/account.model.dart';
+import 'package:myxpenses/data/models/expense.model.dart';
+import 'package:myxpenses/data/providers/accounts.provider.dart';
+import 'package:myxpenses/data/providers/date_interval.provider.dart';
+import 'package:myxpenses/data/providers/expenses.provider.dart';
 import 'package:provider/provider.dart';
 
 class AccountBuilder extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myxpenses/providers/accounts.provider.dart';
-import 'package:myxpenses/widgets/accounts/account_form.dart';
+import 'package:myxpenses/data/providers/accounts.provider.dart';
+import 'package:myxpenses/ui/widgets/accounts/account_form.dart';
 import 'package:provider/provider.dart';
 
 class CreateAccountScreen extends StatelessWidget {

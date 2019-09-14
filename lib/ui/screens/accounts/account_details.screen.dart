@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:myxpenses/models/account.model.dart';
-import 'package:myxpenses/models/expense.model.dart';
-import 'package:myxpenses/widgets/accounts/account_builder.dart';
-import 'package:myxpenses/widgets/date_interval_selector.dart';
-import 'package:myxpenses/widgets/expenses/expense_list_item.dart';
+import 'package:myxpenses/data/models/account.model.dart';
+import 'package:myxpenses/data/models/expense.model.dart';
+import 'package:myxpenses/ui/widgets/accounts/account_builder.dart';
+import 'package:myxpenses/ui/widgets/date_interval_selector.dart';
+import 'package:myxpenses/ui/widgets/expenses/expense_list_item.dart';
 
 class AccountDetailsScreen extends StatelessWidget {
   @override

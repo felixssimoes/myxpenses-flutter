@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:myxpenses/models/account.model.dart';
-import 'package:myxpenses/models/expense.model.dart';
-import 'package:myxpenses/widgets/accounts/account_builder.dart';
+import 'package:myxpenses/data/models/account.model.dart';
+import 'package:myxpenses/data/models/expense.model.dart';
+import 'package:myxpenses/ui/widgets/accounts/account_builder.dart';
 
 class AccountsListItem extends StatelessWidget {
   final Function onSelectAccount;

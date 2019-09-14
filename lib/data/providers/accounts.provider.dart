@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
-import 'package:myxpenses/models/account.model.dart';
+import 'package:myxpenses/data/models/account.model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
