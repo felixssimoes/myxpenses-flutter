@@ -39,7 +39,7 @@ class AccountsListScreen extends StatelessWidget {
               accountId: account.id,
               onSelectAccount: () {
                 Navigator.of(context).pushNamed(
-                  'account-details',
+                  '/account-details',
                   arguments: account,
                 );
               },
@@ -54,6 +54,6 @@ class AccountsListScreen extends StatelessWidget {
   }
 
   void _onPressCreateAccount(BuildContext context) {
-    Navigator.of(context).pushNamed('create-account');
+    Navigator.of(context).pushNamed('/create-account');
   }
 }
