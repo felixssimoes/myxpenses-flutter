@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:myxpenses/app/app_navigator.dart';
+import 'package:myxpenses/config/locator.dart';
 import 'package:myxpenses/data/models/account.model.dart';
 import 'package:myxpenses/data/models/expense.model.dart';
 import 'package:myxpenses/ui/widgets/accounts/account_builder.dart';
@@ -46,8 +48,7 @@ class AccountDetailsScreen extends StatelessWidget {
         return ExpenseListItem(
           expenseId: expense.id,
           onSelectExpense: () {
-            Navigator.of(context)
-                .pushNamed('/edit-expense', arguments: expense);
+            locator<AppNavigator>().openEditExpense(expense: expense);
           },
         );
       },
@@ -68,10 +69,9 @@ class AccountDetailsScreen extends StatelessWidget {
   Widget _buildAccountSettingsButton(BuildContext context, Account account) {
     return IconButton(
       icon: Icon(Icons.settings),
-      onPressed: () => Navigator.of(context).pushNamed(
-        '/edit-account',
-        arguments: account,
-      ),
+      onPressed: () {
+        locator<AppNavigator>().openEditAccount(account: account);
+      },
     );
   }
 
@@ -79,7 +79,7 @@ class AccountDetailsScreen extends StatelessWidget {
     return FloatingActionButton(
       child: Icon(Icons.add_alarm),
       onPressed: () {
-        Navigator.of(context).pushNamed('/create-expense', arguments: account);
+        locator<AppNavigator>().openCreateExpense(account: account);
       },
     );
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myxpenses/app/app_navigator.dart';
+import 'package:myxpenses/config/locator.dart';
 import 'package:myxpenses/data/models/account.model.dart';
 import 'package:myxpenses/data/providers/expenses.provider.dart';
 import 'package:myxpenses/ui/widgets/expenses/expense_form.dart';
@@ -30,6 +32,6 @@ class CreateExpenseScreen extends StatelessWidget {
       date: formData.date,
       value: formData.value,
     );
-    Navigator.of(context).pop();
+    locator<AppNavigator>().pop();
   }
 }

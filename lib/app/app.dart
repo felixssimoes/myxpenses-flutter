@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myxpenses/app/app_navigator.dart';
+import 'package:myxpenses/config/locator.dart';
 import 'package:myxpenses/data/providers/accounts.provider.dart';
 import 'package:myxpenses/data/providers/date_interval.provider.dart';
 import 'package:myxpenses/data/providers/expenses.provider.dart';
@@ -21,6 +22,7 @@ class MyXpensesApp extends StatelessWidget {
           accentColor: Colors.teal[800],
         ),
         routes: AppNavigator.setupRoutes(context),
+        navigatorKey: locator<AppNavigator>().rootNavigatorKey,
       ),
     );
   }

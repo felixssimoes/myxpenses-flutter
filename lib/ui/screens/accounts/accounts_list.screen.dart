@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myxpenses/app/app_navigator.dart';
+import 'package:myxpenses/config/locator.dart';
 import 'package:myxpenses/data/providers/accounts.provider.dart';
 import 'package:myxpenses/ui/widgets/accounts/account_list_item.dart';
 import 'package:myxpenses/ui/widgets/date_interval_selector.dart';
@@ -38,10 +40,7 @@ class AccountsListScreen extends StatelessWidget {
             return AccountsListItem(
               accountId: account.id,
               onSelectAccount: () {
-                Navigator.of(context).pushNamed(
-                  '/account-details',
-                  arguments: account,
-                );
+                locator<AppNavigator>().openAccountDetails(account: account);
               },
               onDeleteAccount: () {
                 accountsProvider.deleteAccount(account);
@@ -54,6 +53,6 @@ class AccountsListScreen extends StatelessWidget {
   }
 
   void _onPressCreateAccount(BuildContext context) {
-    Navigator.of(context).pushNamed('/create-account');
+    locator<AppNavigator>().openCreateAccount();
   }
 }

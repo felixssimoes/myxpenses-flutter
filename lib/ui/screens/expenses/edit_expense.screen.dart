@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myxpenses/app/app_navigator.dart';
+import 'package:myxpenses/config/locator.dart';
 import 'package:myxpenses/data/models/expense.model.dart';
 import 'package:myxpenses/data/providers/expenses.provider.dart';
 import 'package:myxpenses/ui/widgets/expenses/expense_form.dart';
@@ -42,12 +44,12 @@ class EditExpenseScreen extends StatelessWidget {
       date: formData.date,
       value: formData.value,
     ));
-    Navigator.of(context).pop();
+    locator<AppNavigator>().pop();
   }
 
   Future<void> _deleteExpense(BuildContext context, Expense expense) async {
     await Provider.of<ExpensesProvider>(context, listen: false)
         .deleteExpense(expense);
-    Navigator.of(context).pop();
+    locator<AppNavigator>().pop();
   }
 }

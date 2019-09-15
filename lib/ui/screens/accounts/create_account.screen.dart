@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myxpenses/app/app_navigator.dart';
+import 'package:myxpenses/config/locator.dart';
 import 'package:myxpenses/data/providers/accounts.provider.dart';
 import 'package:myxpenses/ui/widgets/accounts/account_form.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +25,6 @@ class CreateAccountScreen extends StatelessWidget {
   _onSaveAccount(BuildContext context, AccountFormData data) {
     final accounts = Provider.of<AccountsProvider>(context, listen: false);
     accounts.addAccount(name: data.name);
-    Navigator.of(context).pop(true);
+    locator<AppNavigator>().pop();
   }
 }

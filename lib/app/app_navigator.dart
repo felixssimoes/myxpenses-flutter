@@ -22,13 +22,45 @@ class AppNavigator {
 
   final rootNavigatorKey = GlobalKey<NavigatorState>();
 
-  void openCreateAccount() {}
+  bool pop([value]) {
+    return rootNavigatorKey.currentState.pop(value);
+  }
 
-  void openAccountDetails({@required Account account}) {}
+  void popToAccountsList() {
+    rootNavigatorKey.currentState.popUntil(ModalRoute.withName('/'));
+  }
 
-  void openEditAccount({@required Account account}) {}
+  void openCreateAccount() {
+    rootNavigatorKey.currentState.pushNamed(
+      '/create-account',
+    );
+  }
 
-  void openCreateExpense({@required Account account}) {}
+  void openAccountDetails({@required Account account}) {
+    rootNavigatorKey.currentState.pushNamed(
+      '/account-details',
+      arguments: account,
+    );
+  }
 
-  void openEditExpense({@required Expense expense}) {}
+  void openEditAccount({@required Account account}) {
+    rootNavigatorKey.currentState.pushNamed(
+      '/edit-account',
+      arguments: account,
+    );
+  }
+
+  void openCreateExpense({@required Account account}) {
+    rootNavigatorKey.currentState.pushNamed(
+      '/create-expense',
+      arguments: account,
+    );
+  }
+
+  void openEditExpense({@required Expense expense}) {
+    rootNavigatorKey.currentState.pushNamed(
+      '/edit-expense',
+      arguments: expense,
+    );
+  }
 }

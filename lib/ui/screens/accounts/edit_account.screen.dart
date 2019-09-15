@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myxpenses/app/app_navigator.dart';
+import 'package:myxpenses/config/locator.dart';
 import 'package:myxpenses/data/models/account.model.dart';
 import 'package:myxpenses/data/providers/accounts.provider.dart';
 import 'package:myxpenses/data/providers/expenses.provider.dart';
@@ -33,7 +35,7 @@ class EditAccountScreen extends StatelessWidget {
         final accounts = Provider.of<AccountsProvider>(context, listen: false);
         final updatedAccount = account.copyWith(name: data.name);
         accounts.updateAccount(updatedAccount);
-        Navigator.of(context).pop(updatedAccount);
+        locator<AppNavigator>().pop(updatedAccount);
       },
     );
   }
@@ -58,12 +60,12 @@ class EditAccountScreen extends StatelessWidget {
           actions: <Widget>[
             FlatButton(
               child: Text('No'),
-              onPressed: () => Navigator.of(context).pop(false),
+              onPressed: () => locator<AppNavigator>().pop(false),
             ),
             FlatButton(
               child: Text('yes'),
               onPressed: () {
-                return Navigator.of(context).pop(true);
+                locator<AppNavigator>().pop(true);
               },
             ),
           ],
@@ -75,7 +77,7 @@ class EditAccountScreen extends StatelessWidget {
           .deleteAllExpensesForAccount(account);
       Provider.of<AccountsProvider>(context, listen: false)
           .deleteAccount(account);
-      Navigator.of(context).popUntil(ModalRoute.withName('/'));
+      locator<AppNavigator>().popToAccountsList();
     }
   }
 }
