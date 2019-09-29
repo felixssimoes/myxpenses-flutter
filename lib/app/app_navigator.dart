@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:myxpenses/data/models/account.model.dart';
 import 'package:myxpenses/data/models/expense.model.dart';
 import 'package:myxpenses/ui/screens/accounts/account_details.screen.dart';
-import 'package:myxpenses/ui/screens/accounts/accounts_list.screen.dart';
 import 'package:myxpenses/ui/screens/accounts/create_account.screen.dart';
 import 'package:myxpenses/ui/screens/accounts/edit_account.screen.dart';
+import 'package:myxpenses/ui/screens/accounts/list/accounts_list.screen.dart';
 import 'package:myxpenses/ui/screens/expenses/create_expense.screen.dart';
 import 'package:myxpenses/ui/screens/expenses/edit_expense.screen.dart';
 
