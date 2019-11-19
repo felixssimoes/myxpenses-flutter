@@ -8,15 +8,24 @@ import 'package:myxpenses/ui/screens/accounts/edit_account.screen.dart';
 import 'package:myxpenses/ui/screens/expenses/create_expense.screen.dart';
 import 'package:myxpenses/ui/screens/expenses/edit_expense.screen.dart';
 
+class AppRoutes {
+  static const root = '/';
+  static const accountDetails = '/account-details';
+  static const createAccount = '/create-account';
+  static const editAccount = '/edit-account';
+  static const createExpense = '/create-expense';
+  static const editExpense = '/edit-expense';
+}
+
 class AppNavigator {
   static Map<String, WidgetBuilder> setupRoutes(BuildContext context) {
     return {
-      '/': (_) => AccountsListScreen(),
-      '/account-details': (_) => AccountDetailsScreen(),
-      '/create-account': (_) => CreateAccountScreen(),
-      '/edit-account': (_) => EditAccountScreen(),
-      '/create-expense': (_) => CreateExpenseScreen(),
-      '/edit-expense': (_) => EditExpenseScreen(),
+      AppRoutes.root: (_) => AccountsListScreen(),
+      AppRoutes.accountDetails: (_) => AccountDetailsScreen(),
+      AppRoutes.createAccount: (_) => CreateAccountScreen(),
+      AppRoutes.editAccount: (_) => EditAccountScreen(),
+      AppRoutes.createExpense: (_) => CreateExpenseScreen(),
+      AppRoutes.editExpense: (_) => EditExpenseScreen(),
     };
   }
 
@@ -32,34 +41,34 @@ class AppNavigator {
 
   void openCreateAccount() {
     rootNavigatorKey.currentState.pushNamed(
-      '/create-account',
+      AppRoutes.createAccount,
     );
   }
 
   void openAccountDetails({@required Account account}) {
     rootNavigatorKey.currentState.pushNamed(
-      '/account-details',
+      AppRoutes.accountDetails,
       arguments: account,
     );
   }
 
   void openEditAccount({@required Account account}) {
     rootNavigatorKey.currentState.pushNamed(
-      '/edit-account',
+      AppRoutes.editAccount,
       arguments: account,
     );
   }
 
   void openCreateExpense({@required Account account}) {
     rootNavigatorKey.currentState.pushNamed(
-      '/create-expense',
+      AppRoutes.createExpense,
       arguments: account,
     );
   }
 
   void openEditExpense({@required Expense expense}) {
     rootNavigatorKey.currentState.pushNamed(
-      '/edit-expense',
+      AppRoutes.editExpense,
       arguments: expense,
     );
   }
