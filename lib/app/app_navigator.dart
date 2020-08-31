@@ -31,8 +31,8 @@ class AppNavigator {
 
   final rootNavigatorKey = GlobalKey<NavigatorState>();
 
-  bool pop([value]) {
-    return rootNavigatorKey.currentState.pop(value);
+  void pop([value]) {
+    rootNavigatorKey.currentState.pop(value);
   }
 
   void popToAccountsList() {
